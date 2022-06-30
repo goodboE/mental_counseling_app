@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">temp_home_activity</string>
+    <string name="home">홈</string>
+    <string name="search">상담사 검색</string>
+    <string name="chat">대화</string>
+    <string name="myPage">내정보</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
