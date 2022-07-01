@@ -1,7 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="14dp"
+    app:cardBackgroundColor="@color/gray"
+    app:cardCornerRadius="12dp"
+    app:contentPadding="4dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <ImageView
+            android:id="@+id/counselorImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            tools:src="@drawable/counselorimage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/cardViewCounselorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="ABCD 상담사"
+            app:layout_constraintEnd_toEndOf="@id/counselorImageView"
+            app:layout_constraintStart_toStartOf="@id/counselorImageView"
+            app:layout_constraintTop_toBottomOf="@id/counselorImageView" />
+
+        <TextView
+            android:id="@+id/cardViewCounselorIntroduction"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            tools:text="상담사 한줄 소개 입니다다다다다다다다"
+            app:layout_constraintEnd_toEndOf="@id/counselorImageView"
+            app:layout_constraintStart_toStartOf="@id/counselorImageView"
+            app:layout_constraintTop_toBottomOf="@id/cardViewCounselorName" />
+
+        <TextView
+            android:id="@+id/cardViewCounselorHeart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="♥♥♥♥♥"
+            app:layout_constraintEnd_toEndOf="@id/counselorImageView"
+            app:layout_constraintStart_toStartOf="@id/counselorImageView"
+            app:layout_constraintTop_toBottomOf="@id/cardViewCounselorIntroduction" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

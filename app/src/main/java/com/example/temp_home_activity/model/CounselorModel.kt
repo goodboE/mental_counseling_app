@@ -1,4 +1,4 @@
-package com.example.temp_home_activity
+package com.example.temp_home_activity.model
 
 data class CounselorModel(
     val counselorId: String,
@@ -6,5 +6,6 @@ data class CounselorModel(
     var counselorIntroduction: String,
     var counselorProfit: String,
     var counselorHeart: String,
-    var counselorHashTag: MutableList<String>
+    var counselorHashTag: MutableList<String>,
+    val counselorImageUrl: String
 )
