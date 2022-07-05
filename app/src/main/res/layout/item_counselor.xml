@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="14dp"
     app:cardBackgroundColor="@color/gray"
     app:cardCornerRadius="12dp"
@@ -18,40 +18,49 @@
             android:id="@+id/counselorImageView"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            tools:src="@drawable/counselorimage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/counselorimage" />
 
         <TextView
             android:id="@+id/cardViewCounselorName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="ABCD 상담사"
             app:layout_constraintEnd_toEndOf="@id/counselorImageView"
             app:layout_constraintStart_toStartOf="@id/counselorImageView"
-            app:layout_constraintTop_toBottomOf="@id/counselorImageView" />
+            app:layout_constraintTop_toBottomOf="@id/counselorImageView"
+            tools:text="ABCD 상담사" />
 
         <TextView
             android:id="@+id/cardViewCounselorIntroduction"
             android:layout_width="0dp"
-            android:gravity="center"
             android:layout_height="wrap_content"
             android:ellipsize="end"
+            android:gravity="center"
             android:maxLines="1"
-            tools:text="상담사 한줄 소개 입니다다다다다다다다"
             app:layout_constraintEnd_toEndOf="@id/counselorImageView"
             app:layout_constraintStart_toStartOf="@id/counselorImageView"
-            app:layout_constraintTop_toBottomOf="@id/cardViewCounselorName" />
+            app:layout_constraintTop_toBottomOf="@id/cardViewCounselorName"
+            tools:text="상담사 한줄 소개 입니다다다다다다다다" />
 
-        <TextView
-            android:id="@+id/cardViewCounselorHeart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="♥♥♥♥♥"
+        <ImageView
+            android:id="@+id/cardViewHeart"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/icons8heartplus48"
             app:layout_constraintEnd_toEndOf="@id/counselorImageView"
             app:layout_constraintStart_toStartOf="@id/counselorImageView"
             app:layout_constraintTop_toBottomOf="@id/cardViewCounselorIntroduction" />
+
+        <TextView
+            android:id="@+id/cardViewCounselorHeart"
+            android:layout_marginStart="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/cardViewHeart"
+            app:layout_constraintTop_toBottomOf="@id/cardViewCounselorIntroduction"
+            tools:text="38" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

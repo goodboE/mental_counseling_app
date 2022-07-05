@@ -17,8 +17,8 @@ class CounselorAdapter: ListAdapter<CounselorModel, CounselorAdapter.CounselorVi
         fun bind(counselorModel: CounselorModel) {
 
             binding.cardViewCounselorName.text = counselorModel.counselorName
-            binding.cardViewCounselorHeart.text = counselorModel.counselorHeart
             binding.cardViewCounselorIntroduction.text = counselorModel.counselorIntroduction
+            binding.cardViewCounselorHeart.text = counselorModel.counselorHeart
 
             Glide.with(binding.counselorImageView)
                 .load(counselorModel.counselorImageUrl)
@@ -27,9 +27,7 @@ class CounselorAdapter: ListAdapter<CounselorModel, CounselorAdapter.CounselorVi
         }
     }
 
-    override fun getItemCount(): Int {
-        return super.getItemCount()
-    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CounselorViewHolder {
         return CounselorViewHolder(ItemCounselorBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
