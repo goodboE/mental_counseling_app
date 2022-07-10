@@ -1,4 +1,4 @@
-package com.example.temp_home_activity.home
+package com.testor.whynot.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.temp_home_activity.R
-import com.example.temp_home_activity.model.CounselorModel
-import com.example.temp_home_activity.databinding.ItemCounselorBinding
+import com.testor.whynot.R
+import com.testor.whynot.model.CounselorModel
+import com.testor.whynot.databinding.ItemCounselorBinding
 
 class CounselorAdapter: ListAdapter<CounselorModel, CounselorAdapter.CounselorViewHolder>(diffUtil) {
 
@@ -20,7 +20,8 @@ class CounselorAdapter: ListAdapter<CounselorModel, CounselorAdapter.CounselorVi
             binding.cardViewCounselorIntroduction.text = counselorModel.counselorIntroduction
             binding.cardViewCounselorHeart.text = counselorModel.counselorHeart
 
-            Glide.with(binding.counselorImageView)
+            Glide
+                .with(binding.counselorImageView)
                 .load(counselorModel.counselorImageUrl)
                 .error(R.drawable.counselorimage)
                 .into(binding.counselorImageView)

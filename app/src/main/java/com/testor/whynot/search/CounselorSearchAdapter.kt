@@ -1,14 +1,14 @@
-package com.example.temp_home_activity.search
+package com.testor.whynot.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.temp_home_activity.R
-import com.example.temp_home_activity.databinding.ItemCounselorInSearchBinding
-import com.example.temp_home_activity.home.CounselorAdapter.Companion.diffUtil
-import com.example.temp_home_activity.model.CounselorModel
+import com.testor.whynot.R
+import com.testor.whynot.databinding.ItemCounselorInSearchBinding
+import com.testor.whynot.home.CounselorAdapter.Companion.diffUtil
+import com.testor.whynot.model.CounselorModel
 
 class CounselorSearchAdapter: ListAdapter<CounselorModel, CounselorSearchAdapter.CounselorSearchViewHolder>(diffUtil) {
 

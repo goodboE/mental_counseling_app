@@ -1,4 +1,4 @@
-package com.example.temp_home_activity
+package com.testor.whynot
 
 import org.junit.Test
 

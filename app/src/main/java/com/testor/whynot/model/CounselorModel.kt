@@ -1,4 +1,4 @@
-package com.example.temp_home_activity.model
+package com.testor.whynot.model
 
 data class CounselorModel(
     val counselorId: String,
