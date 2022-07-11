@@ -6,6 +6,9 @@ import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainer
 import androidx.fragment.app.FragmentContainerView
+import androidx.navigation.NavHost
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.testor.whynot.chat.ChatFragment
 import com.testor.whynot.home.HomeFragment
 import com.testor.whynot.myPage.MyPageFragment
@@ -14,46 +17,27 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.testor.whynot.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var fragmentContainer: FragmentContainerView
+    private lateinit var mBinding: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        fragmentContainer = findViewById(R.id.fragmentContainerView)
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-
-        changeFragment(HomeFragment())
+        mBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
 
         auth = Firebase.auth
 
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        NavigationUI.setupWithNavController(mBinding.bottomNavigationView, navController)
 
-        bottomNavigationView.setOnItemSelectedListener { menuItem ->
-            when(menuItem.itemId) {
-                R.id.home -> changeFragment(HomeFragment())
-                R.id.search -> changeFragment(SearchFragment())
-                R.id.chat -> changeFragment(ChatFragment())
-                R.id.myPage -> changeFragment(MyPageFragment())
-            }
-            true
-        }
 
 
     }
-
-
-    fun changeFragment(newFragment: Fragment) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragmentContainerView, newFragment)
-            .commit()
-    }
-
-
 
 }
 

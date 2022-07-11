@@ -20,8 +20,12 @@
         <entry key="..\:/Users/ko/AndroidStudioProjects/whynot/app/src/main/res/drawable/shape_home_circle_button.xml" value="0.268" />
         <entry key="..\:/Users/ko/AndroidStudioProjects/whynot/app/src/main/res/layout/activity_login.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/ko/AndroidStudioProjects/whynot/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/ko/AndroidStudioProjects/whynot/app/src/main/res/layout/fragment_chat.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/ko/AndroidStudioProjects/whynot/app/src/main/res/layout/fragment_home.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/ko/AndroidStudioProjects/whynot/app/src/main/res/layout/fragment_login.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/ko/AndroidStudioProjects/whynot/app/src/main/res/layout/fragment_my_page.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/ko/AndroidStudioProjects/whynot/app/src/main/res/layout/fragment_search.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/ko/AndroidStudioProjects/whynot/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36614583333333334" />
       </map>
     </option>
   </component>
