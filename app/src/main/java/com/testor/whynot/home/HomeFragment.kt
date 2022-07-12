@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.testor.whynot.R
 import com.testor.whynot.databinding.FragmentHomeBinding
 
@@ -12,6 +15,7 @@ import com.testor.whynot.databinding.FragmentHomeBinding
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private var binding: FragmentHomeBinding? = null
+    private lateinit var auth: FirebaseAuth
     private lateinit var counselorAdapter: CounselorAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -19,6 +23,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         val fragmentHomeBinding = FragmentHomeBinding.bind(view)
         binding = fragmentHomeBinding
+        auth = Firebase.auth
 
         fragmentHomeBinding.homeLoginButton.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_loginFragment)
@@ -37,7 +42,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     }
 
-
+    override fun onStart() {
+        super.onStart()
+        if (auth.currentUser != null) {
+            binding?.homeLoginButton?.setText(auth.currentUser!!.email + "\n 님 환영합니다!")
+        }
+    }
 
     override fun onDestroy() {
         binding = null

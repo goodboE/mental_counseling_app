@@ -43,8 +43,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
 
-    private fun initSignInButton(fragmentLoginBinding: FragmentLoginBinding) {
-        fragmentLoginBinding.signInButton.setOnClickListener {
+    private fun initSignUpButton(fragmentLoginBinding: FragmentLoginBinding) {
+        fragmentLoginBinding.signUpButton.setOnClickListener {
             val email = fragmentLoginBinding.emailEditText.text.toString()
             val password = fragmentLoginBinding.passwordEditText.text.toString()
 
@@ -59,26 +59,51 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                             "이미 가입한 이메일 or 회원가입 실패",
                             Toast.LENGTH_SHORT
                         ).show()
-                        Log.d("signinerror", task.exception?.message.toString())
+                        Log.d("signUperror", task.exception?.message.toString())
                     }
                 }
 
         }
     }
 
-    private fun initSignUpButton(fragmentLoginBinding: FragmentLoginBinding) {
-        fragmentLoginBinding.signUpButton.setOnClickListener {
+    private fun initSignInButton(fragmentLoginBinding: FragmentLoginBinding) {
+        fragmentLoginBinding.signInButton.setOnClickListener {
             val email = fragmentLoginBinding.emailEditText.text.toString()
             val password = fragmentLoginBinding.passwordEditText.text.toString()
 
+            if (auth.currentUser == null) {
+
+                auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(requireActivity()) { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(requireActivity(), "로그인 성공", Toast.LENGTH_SHORT).show()
+                            successSignIn()
+                        } else {
+                            Toast.makeText(requireActivity(), "로그인 실패", Toast.LENGTH_SHORT).show()
+                            Log.d("signInError", task.exception?.message.toString())
+                        }
+                    }
+            } else {
+                auth.signOut()
+                fragmentLoginBinding.emailEditText.text.clear()
+                fragmentLoginBinding.emailEditText.isEnabled = true
+                fragmentLoginBinding.nameEditText.text.clear()
+                fragmentLoginBinding.nameEditText.isEnabled = true
+                fragmentLoginBinding.passwordEditText.text.clear()
+                fragmentLoginBinding.passwordEditText.isEnabled = true
+
+                fragmentLoginBinding.signInButton.text = "로그인"
+                fragmentLoginBinding.signInButton.isEnabled = true
+                fragmentLoginBinding.signUpButton.isEnabled = false
+            }
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(requireActivity()) { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(requireActivity(), "로그인 성공", Toast.LENGTH_SHORT).show()
+                        // Toast.makeText(requireActivity(), "로그인 성공", Toast.LENGTH_SHORT).show()
 
                     } else {
                         Toast.makeText(requireActivity(), "로그인 실패", Toast.LENGTH_SHORT).show()
-                        Log.d("signUpError", task.exception?.message.toString())
+                        Log.d("signInError", task.exception?.message.toString())
                     }
                 }
 
@@ -93,21 +118,21 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         val signUpButton = fragmentLoginBinding.signUpButton
 
         emailEditText.addTextChangedListener {
-            val enable =
+            var enable =
                 emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty() && nameEditText.text.isNotEmpty()
             signInButton.isEnabled = enable
             signUpButton.isEnabled = enable
         }
 
         passwordEditText.addTextChangedListener {
-            val enable =
+            var enable =
                 emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty() && nameEditText.text.isNotEmpty()
             signInButton.isEnabled = enable
             signUpButton.isEnabled = enable
         }
 
         nameEditText.addTextChangedListener {
-            val enable =
+            var enable =
                 emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty() && nameEditText.text.isNotEmpty()
             signInButton.isEnabled = enable
             signUpButton.isEnabled = enable
@@ -120,7 +145,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         val name = fragmentLoginBinding.nameEditText.text.toString()
         if (auth.currentUser == null) {
-            Toast.makeText(requireActivity(), "로그인 실패", Toast.LENGTH_SHORT).show()
+            // Toast.makeText(requireActivity(), "로그인 실패", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -131,6 +156,54 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         user["name"] = name
         currentUserDB.updateChildren(user)
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        if (auth.currentUser == null) {
+            binding?.let { binding ->
+                binding.signInButton.text = "로그인"
+
+                binding.emailEditText.text.clear()
+                binding.nameEditText.text.clear()
+                binding.passwordEditText.text.clear()
+
+                binding.emailEditText.isEnabled = true
+                binding.nameEditText.isEnabled = true
+                binding.passwordEditText.isEnabled = true
+
+                binding.signInButton.isEnabled = false
+                binding.signUpButton.isEnabled = false
+            }
+        } else {
+            binding?.let { binding ->
+                binding.signInButton.text = "로그아웃"
+
+                binding.emailEditText.setText(auth.currentUser!!.email)
+                binding.nameEditText.setText("name")
+                binding.passwordEditText.setText("******")
+
+                binding.signInButton.isEnabled = true
+                binding.signUpButton.isEnabled = false
+
+                binding.emailEditText.isEnabled = true
+                binding.nameEditText.isEnabled = true
+                binding.passwordEditText.isEnabled = true
+            }
+        }
+    }
+
+    private fun successSignIn() {
+        if (auth.currentUser == null) {
+            Toast.makeText(requireActivity(), "로그인 실패, 다시 시도 바람", Toast.LENGTH_SHORT).show()
+            return
+        }
+        binding?.emailEditText?.isEnabled = false
+        binding?.nameEditText?.isEnabled = false
+        binding?.passwordEditText?.isEnabled = false
+        binding?.signInButton?.text = "로그아웃"
+        binding?.signUpButton?.isEnabled = false
     }
 
 
